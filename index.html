@@ -4,128 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MenuTime</title>
-    <style>
-        
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-html, body {
-    height: 100%;
-    width: 100%;
-}
-body {
-    min-height: 100vh;   /* prend au minimum toute la hauteur écran */
-    width: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-}
-.container {
-    background-color: rgb(240, 237, 236);
-} 
-img{
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-header {
-    display:grid ;
-     grid-template-columns: 1fr 1fr;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
-  align-items: center;
-    padding: 10px;
-}
-ul{
-    list-style: none;
-}
-a{
-    text-decoration: none;
-}
-.header  {
-    flex:1 ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 10px;
-}
-a{
-    padding: 10px;
-}
-.img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-.logo{
-    width: 70px;
-    height: auto;
-}
-main{
-
-}
-main h1 , p{
-    text-align: center;
-    padding: 10px;
-}
-.carte {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; 
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-.card{
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    height: auto;
-    width: auto;
-    justify-content: center;
-    align-items: center ;
-    text-align: center;
     
-} :root{--b:#e5e7eb;--bg:#f8fafc;--fg:#0f172a;--muted:#64748b;--brand:#2563eb;}
-  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--fg);margin:16px;line-height:1.35}
-  /* --- Formulaire --- */
-  .card{background:#fff;border:1px solid var(--b);border-radius:12px;padding:14px;margin-bottom:16px}
-  .row{display:grid;grid-template-columns:160px 1fr;gap:10px;align-items:center;margin:10px 0}
-  label{font-weight:600}
-  input,select,button{width:100%;padding:10px 12px;border:1px solid var(--b);border-radius:10px;font-size:16px}
-  .hint{color:var(--muted);font-size:.92rem}
-  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-  .btn{background:var(--brand);color:#fff;border:0;cursor:pointer}
-  .btn.secondary{background:#fff;border:1px solid var(--b);color:#111827}
-  .hidden{display:none}
-  /* --- Tableau hebdo --- */
-  .toolbar{display:flex;gap:10px;align-items:center;margin:0 0 10px 2px}
-  .table-wrap{border:1px solid var(--b);border-radius:12px;overflow-x:auto;background:#fff}
-  table{width:100%;border-collapse:separate;border-spacing:0}
-  caption{text-align:left;font-weight:700;padding:12px 16px}
-  th,td{padding:12px;border-top:1px solid var(--b);border-right:1px solid var(--b);vertical-align:top}
-  th:last-child,td:last-child{border-right:0}
-  thead th{background:var(--bg);position:sticky;top:0;z-index:1}
-  .repas{position:sticky;left:0;background:#fff;z-index:2;white-space:nowrap;font-weight:700}
-  td{min-width:160px}
-  .cell-muted{color:var(--muted)}
-  .cell-line{display:grid;grid-template-columns:88px 1fr;gap:.4rem .6rem}
-  .cell-line .lbl{font-weight:600}
-  /* Abréviations jours sur mobile */
-  .day .full{display:inline}.day .short{display:none}
-  @media (max-width:600px){
-    .row{grid-template-columns:1fr}
-    td{min-width:200px}
-    .day .full{display:none}.day .short{display:inline}
-  }
-  @media print{
-    .card,.toolbar{display:none}
-    .table-wrap{overflow:visible;border:0}
-    thead th,.repas{position:static}
-    .day .full{display:inline}.day .short{display:none}
-  }
-
-    </style>
+  <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
     <div class="container">
@@ -171,239 +51,80 @@ main h1 , p{
                     <button>Recettes</button>
                 </div>
             </div>
-<!-- ========= Formulaire ========= -->
-<div class="card">
-  <div class="row">
+
+
+<div class="planning-container">
+  <!-- Formulaire -->
+  <form id="form-planning" autocomplete="off">
     <label>Semaine du :</label>
-    <input type="date" id="weekStart">
-  </div>
+    <input type="date" id="weekStart" />
 
-  <div class="row">
     <label>Jour :</label>
-    <select id="day">
-      <option>Lundi</option><option>Mardi</option><option>Mercredi</option>
-      <option>Jeudi</option><option>Vendredi</option><option>Samedi</option><option>Dimanche</option>
+    <select id="jour">
+      <option value="Lundi">Lundi</option>
+      <option value="Mardi">Mardi</option>
+      <option value="Mercredi">Mercredi</option>
+      <option value="Jeudi">Jeudi</option>
+      <option value="Vendredi">Vendredi</option>
+      <option value="Samedi">Samedi</option>
+      <option value="Dimanche">Dimanche</option>
     </select>
-  </div>
 
-  <div class="row">
     <label>Repas :</label>
-    <select id="meal">
-      <option>Petit-déjeuner</option>
-      <option>Déjeuner</option>
-      <option>Dîner</option>
+    <select id="repas">
+      <option value="Petit-déjeuner">Petit-déjeuner</option>
+      <option value="Déjeuner">Déjeuner</option>
+      <option value="Diner">Diner</option>
     </select>
-  </div>
 
-  <!-- Mode saisi uniquement pour Déjeuner / Dîner -->
-  <div class="row" id="modeRow">
-    <label>Mode de saisie :</label>
-    <select id="mode">
-      <option value="normal">Normal</option>
-      <option value="epd">Entrée / Plat / Dessert</option>
-    </select>
-  </div>
+    <label>Plat :</label>
+    
+    <input type="text" id="plat" placeholder="Ex: Pizza" required />
+<label for="weekSelect">📅 Mes plannings enregistrés :</label>
+<select id="weekSelect">
+  <option value="">-- Sélectionner une semaine --</option>
+</select>
+<button id="loadSelectedWeek" type="button">Charger</button>
 
-  <!-- Normal -->
-  <div class="row" id="rowNormal">
-    <label id="labelNormal">Plat :</label>
-    <input id="inputNormal" placeholder="Ex : Pizza">
-  </div>
+<button type="submit">Ajouter</button>
 
-  <!-- E/P/D -->
-  <div id="rowEPD" class="hidden">
-    <div class="row"><label>Entrée :</label><input id="entree" placeholder="Ex : Salade"></div>
-    <div class="row"><label>Plat :</label><input id="plat" placeholder="Ex : Poulet / Légumes"></div>
-    <div class="row"><label>Dessert :</label><input id="dessert" placeholder="Ex : Yaourt"></div>
-    <div class="row"><span></span><div class="hint">Tu peux laisser Entrée ou Dessert vide.</div></div>
-  </div>
 
-  <div class="actions">
-    <button class="btn" id="addBtn">Ajouter</button>
-    <button class="btn secondary" id="clearBtn" type="button">Vider la case</button>
-    <button class="btn secondary" id="clearWeekBtn" type="button">Vider toute la semaine</button>
+    
+    <button id="exportPDF" type="button">📄 Exporter en PDF</button>
+   <!--    <button id="exportJSON" type="button">⬇️ Exporter le JSON</button>-->
+    <button id="resetPlanning" type="button">Réinitialiser le planning</button>
+    <button id="saveAccount" type="button">💾 Enregistrer sur mon compte</button>
+  <!--  <button id="loadAccount" type="button">☁️ Charger depuis mon compte</button> -->
+
+  </form>
+
+  <!-- Tableau -->
+  <div class="planning-wrapper">
+    
+<div id="weekRange" class="week-range" aria-live="polite"></div>
+
+    <table id="planning">
+      <thead>
+        <tr>
+          <th>Jour</th>
+          <th>Petit-déjeuner</th>
+          <th>Déjeuner</th>
+          <th>Diner</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Lundi</td><td></td><td></td><td></td></tr>
+        <tr><td>Mardi</td><td></td><td></td><td></td></tr>
+        <tr><td>Mercredi</td><td></td><td></td><td></td></tr>
+        <tr><td>Jeudi</td><td></td><td></td><td></td></tr>
+        <tr><td>Vendredi</td><td></td><td></td><td></td></tr>
+        <tr><td>Samedi</td><td></td><td></td><td></td></tr>
+        <tr><td>Dimanche</td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
-
-<!-- ========= Tableau + mode d'affichage ========= -->
-<div class="toolbar">
-  <label><strong>Mode d’affichage :</strong></label>
-  <select id="viewMode">
-    <option value="normal">Normal</option>
-    <option value="epd">Entrée / Plat / Dessert</option>
-  </select>
-  <button class="btn secondary" onclick="window.print()">Aperçu PDF</button>
-</div>
-
-<div class="table-wrap">
-  <table id="weekTable">
-    <caption>Planning des repas — semaine</caption>
-    <thead>
-      <tr>
-        <th class="repas">Repas</th>
-        <th class="day"><span class="full">Lundi</span><span class="short">Lu</span></th>
-        <th class="day"><span class="full">Mardi</span><span class="short">Ma</span></th>
-        <th class="day"><span class="full">Mercredi</span><span class="short">Me</span></th>
-        <th class="day"><span class="full">Jeudi</span><span class="short">Je</span></th>
-        <th class="day"><span class="full">Vendredi</span><span class="short">Ve</span></th>
-        <th class="day"><span class="full">Samedi</span><span class="short">Sa</span></th>
-        <th class="day"><span class="full">Dimanche</span><span class="short">Di</span></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr data-meal="pdj"><th class="repas">Petit déjeuner</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr data-meal="dej"><th class="repas">Déjeuner</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr data-meal="din"><th class="repas">Dîner</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-    </tbody>
-  </table>
-</div>
-
-
-        </main>
-        <aside></aside>
-        <footer></footer>
-    </div>
-    <script>
-  // ------ Utilitaires ------
-  const DAYS = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
-  const weekStart = document.getElementById('weekStart');
-  const daySel = document.getElementById('day');
-  const mealSel = document.getElementById('meal');
-  const modeRow = document.getElementById('modeRow');
-  const modeSel = document.getElementById('mode');
-  const labelNormal = document.getElementById('labelNormal');
-  const rowNormal = document.getElementById('rowNormal');
-  const rowEPD = document.getElementById('rowEPD');
-  const inputNormal = document.getElementById('inputNormal');
-  const entreeInp = document.getElementById('entree');
-  const platInp = document.getElementById('plat');
-  const dessertInp = document.getElementById('dessert');
-  const viewModeSel = document.getElementById('viewMode');
-  const table = document.getElementById('weekTable');
-  const addBtn = document.getElementById('addBtn');
-  const clearBtn = document.getElementById('clearBtn');
-  const clearWeekBtn = document.getElementById('clearWeekBtn');
-
-  // Data modèle : { Jour: { pdj: string, dej: {epd:boolean, normal:string, e:string,p:string,d:string}, din: {..} } }
-  const data = {};
-  DAYS.forEach(d => data[d] = { pdj:'', dej:blankMeal(), din:blankMeal()});
-  function blankMeal(){ return { epd:false, normal:'', e:'', p:'', d:'' }; }
-
-  // Semaine par défaut = lundi de la semaine courante
-  (function setDefaultWeek(){
-    const now = new Date();
-    const diffToMonday = (now.getDay()+6)%7; // 0=lundi
-    const monday = new Date(now); monday.setDate(now.getDate()-diffToMonday);
-    weekStart.valueAsDate = monday;
-  })();
-
-  // Afficher/Masquer les champs selon le repas + mode
-  function refreshFormVisibility(){
-    const meal = mealSel.value;
-    const isBreakfast = meal === 'Petit-déjeuner';
-    modeRow.classList.toggle('hidden', isBreakfast);
-    if(isBreakfast){
-      labelNormal.textContent = 'Petit-déjeuner :';
-      rowNormal.classList.remove('hidden');
-      rowEPD.classList.add('hidden');
-    }else{
-      labelNormal.textContent = 'Plat :';
-      const isEPD = modeSel.value === 'epd';
-      rowNormal.classList.toggle('hidden', isEPD);
-      rowEPD.classList.toggle('hidden', !isEPD);
-    }
-  }
-  mealSel.addEventListener('change', refreshFormVisibility);
-  modeSel.addEventListener('change', refreshFormVisibility);
-  refreshFormVisibility();
-
-  // Rendu d’une cellule selon le mode d’affichage
-  function renderCell(mealData, viewMode){
-    if(!mealData) return '';
-    if(viewMode === 'normal' || mealData.epd === false){
-      // mode normal : une seule ligne ; si EPD stocké, fusionne les non vides
-      const merged = mealData.epd ? [mealData.e, mealData.p, mealData.d].filter(Boolean).join(' • ') : mealData.normal;
-      return merged ? merged : '<span class="cell-muted">Ajouter…</span>';
-    } else {
-      // EPD affiché en 3 lignes
-      const lines = [];
-      if(mealData.e) lines.push(`<div class="lbl">Entrée</div><div>${escapeHtml(mealData.e)}</div>`);
-      if(mealData.p) lines.push(`<div class="lbl">Plat</div><div>${escapeHtml(mealData.p)}</div>`);
-      if(mealData.d) lines.push(`<div class="lbl">Dessert</div><div>${escapeHtml(mealData.d)}</div>`);
-      if(lines.length===0) return '<span class="cell-muted">Ajouter…</span>';
-      return `<div class="cell-line">${lines.join('')}</div>`;
-    }
-  }
-
-  function updateTable(){
-    const viewMode = viewModeSel.value; // 'normal' | 'epd'
-    // PDJ
-    DAYS.forEach((day, i)=>{
-      const td = table.querySelector(`tr[data-meal="pdj"]`).children[i+1];
-      const val = (data[day].pdj || '').trim();
-      td.innerHTML = val ? escapeHtml(val) : '<span class="cell-muted">Ajouter…</span>';
-    });
-    // DEJ / DIN
-    ['dej','din'].forEach(key=>{
-      DAYS.forEach((day,i)=>{
-        const td = table.querySelector(`tr[data-meal="${key}"]`).children[i+1];
-        td.innerHTML = renderCell(data[day][key], viewMode);
-      });
-    });
-  }
-  viewModeSel.addEventListener('change', updateTable);
-  updateTable();
-
-  // Ajouter / Vider
-  addBtn.addEventListener('click', (e)=>{
-    e.preventDefault();
-    const day = daySel.value;
-    const meal = mealSel.value;
-
-    if(meal === 'Petit-déjeuner'){
-      data[day].pdj = inputNormal.value.trim();
-    }else{
-      const target = (meal === 'Déjeuner') ? data[day].dej : data[day].din;
-      if(modeSel.value === 'normal'){
-        target.epd = false;
-        target.normal = inputNormal.value.trim();
-        target.e = target.p = target.d = '';
-      }else{
-        target.epd = true;
-        target.e = entreeInp.value.trim();
-        target.p = platInp.value.trim();
-        target.d = dessertInp.value.trim();
-        target.normal = '';
-      }
-    }
-    updateTable();
-  });
-
-  clearBtn.addEventListener('click',(e)=>{
-    e.preventDefault();
-    const day = daySel.value;
-    const meal = mealSel.value;
-    if(meal === 'Petit-déjeuner'){
-      data[day].pdj = '';
-    }else{
-      const target = (meal === 'Déjeuner') ? data[day].dej : data[day].din;
-      Object.assign(target, blankMeal());
-    }
-    updateTable();
-  });
-
-  clearWeekBtn.addEventListener('click',(e)=>{
-    e.preventDefault();
-    DAYS.forEach(d=>{
-      data[d].pdj = '';
-      data[d].dej = blankMeal();
-      data[d].din = blankMeal();
-    });
-    updateTable();
-  });
-
-  // Utils
-  function escapeHtml(s){ return s.replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;', "'":'&#39;' }[m])); }
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js" referrerpolicy="no-referrer"></script>
 </body>
 </html>

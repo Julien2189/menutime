@@ -1,0 +1,207 @@
+
+        
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+    width: 100%;
+}
+body {
+    min-height: 100vh;   /* prend au minimum toute la hauteur écran */
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+    background-color: rgb(240, 237, 236);
+} 
+img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+header {
+    display:grid ;
+     grid-template-columns: 1fr 1fr;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  align-items: center;
+    padding: 10px;
+}
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.header  {
+    flex:1 ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}
+a{
+    padding: 10px;
+}
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.logo{
+    width: 70px;
+    height: auto;
+}
+main{
+  background-color: #c0bcbc;
+}
+main h1 , p{
+    text-align: center;
+    padding: 10px;
+}
+.carte {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    height: auto;
+    width: auto;
+    justify-content: center;
+    align-items: center ;
+    text-align: center;
+    
+} 
+
+.meal-cell {
+  position: relative;
+  min-height: 56px;
+  padding-bottom: 40px; /* place pour le bouton en bas */
+  text-align: left;     /* override du centrage des <td> */
+}
+
+/* ============================
+   Conteneur principal (2 colonnes sur PC)
+============================ */
+.planning-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 50% / 50% */
+  gap: 30px;
+  align-items: stretch;
+  margin: 40px auto;
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ============================
+   Formulaire
+============================ */
+#form-planning {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 25px;
+  border: 1px solid #cfcfcf;
+  border-radius: 10px;
+  background: #fafbfe;
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+#form-planning select,
+#form-planning input[type="text"],
+#form-planning input[type="date"],
+#form-planning button {
+  padding: 12px;
+  border: 1px solid #cfcfcf;
+  border-radius: 6px;
+  font-size: 16px;
+  background: #fff;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#form-planning button {
+  border: none;
+  background: #3b82f6;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity .2s ease, transform .05s ease;
+}
+
+#form-planning button:hover { opacity: .9; }
+#form-planning button:active { transform: translateY(1px); }
+
+/* ============================
+   Tableau
+============================ */
+.planning-wrapper {
+  width: 100%;
+  border: 1px solid #cfcfcf;
+  border-radius: 10px;
+  background: #fff;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+#planning {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+#planning th,
+#planning td {
+  border: 1px solid #cfcfcf;
+  padding: 14px;
+  text-align: center;
+  font-size: 14px;
+  word-break: break-word;
+}
+
+#planning thead th {
+  background: #f5f7fb;
+  font-weight: bold;
+}
+
+#planning tbody tr td:first-child {
+  text-align: left;
+  font-weight: 600;
+  background: #fafbfe;
+}
+.week-range{
+  margin-top: 4px;
+  font-weight: 600;
+  color:#374151;
+}
+/* Largeurs des colonnes */
+#planning th:nth-child(1),
+#planning td:nth-child(1) { width: 30%; }
+
+#planning th:nth-child(2),
+#planning td:nth-child(2),
+#planning th:nth-child(3),
+#planning td:nth-child(3),
+#planning th:nth-child(4),
+#planning td:nth-child(4) { width: 23.3%; }
+
+
+/* ============================
+   Responsive (mobile)
+============================ */
+@media (max-width: 768px) {
+  .planning-container { grid-template-columns: 1fr; }
+}
