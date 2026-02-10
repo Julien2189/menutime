@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MenuTime</title>
+    <style>
+        
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+    width: 100%;
+}
+body {
+    min-height: 100vh;   /* prend au minimum toute la hauteur écran */
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+    background-color: rgb(240, 237, 236);
+} 
+img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+header {
+    display:grid ;
+     grid-template-columns: 1fr 1fr;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  align-items: center;
+    padding: 10px;
+}
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.header  {
+    flex:1 ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}
+a{
+    padding: 10px;
+}
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.logo{
+    width: 70px;
+    height: auto;
+}
+main{
+
+}
+main h1 , p{
+    text-align: center;
+    padding: 10px;
+}
+.carte {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    height: auto;
+    width: auto;
+    justify-content: center;
+    align-items: center ;
+    text-align: center;
+    
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="img">
+                <img src="logoMenuTime.png" class="logo" alt="logoMenuTime">
+            </div>
+            <div class="header">
+                <ul>
+                    <li>
+                        <a href="#">Accueil</a>
+                        <a href="#">Liste de course</a>
+                        <a href="#">Connectez-vous</a>
+                        <a href="#">Contact</a>
+                        <a href="#">A propos</a>
+                        <a href="inscription"></a>
+                        <a href="#">Recettes</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <main>
+            <h1>MenuTime</h1>
+            <p>Organisez vos repas,vos courses et vos objectifs nutritionnels en un seul endroit</p>
+            <p>MenuTime vous aide a planifier la semaine parfaite en quelques minutes.Ajoutez vos plats,générez la liste de courses et (bientot) suivez vos calories.</p>
+            <img src="planification-des-repas-et-composition-des-aliments.jpg" alt="image du site">
+            <div class="carte">
+            <div class="card">
+                    <h2>Planification des repas</h2>
+                    <p>Creez vos menus pour toute la semaine</p>
+                    <p>Organisez vos menus pour toute la semaine de facon intuitive</p>
+                </div>
+                <div class="card">
+                    <h2>Liste de courses</h2>
+                    <p>Generez automatiquement selon vos menus</p>
+                    <p>Generez automatiquement vos listes de courses basés sur vos menus planifiés</p>
+                    <button>Liste de course</button>
+                </div>
+                <div class="card">
+                    <h2>Recettes</h2>
+                    <p>Acceder a des recettes</p>
+                    <p>Ajoutez et partager vos recettes en ligne</p>
+                    <button>Recettes</button>
+                </div>
+            </div>
+
+        </main>
+        <aside></aside>
+        <footer></footer>
+    </div>
+</body>
+</html>
