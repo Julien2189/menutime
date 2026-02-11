@@ -157,8 +157,71 @@
   const ajout = document.getElementById('btn') ;
   const selectRepas = document.getElementById('repas') ;
   const selectJour =  document.getElementById('jour') ;
- 
 
+ const weekStartInput = document.getElementById("weekStart");
+const weekRangeEl = document.getElementById("weekRange");
+
+function pad2(n) { return String(n).padStart(2, "0"); }
+
+function formatFR(date) {
+  return `${pad2(date.getDate())}/${pad2(date.getMonth() + 1)}/${date.getFullYear()}`;
+}
+
+function formatISODateLocal(date) {
+  return `${date.getFullYear()}-${pad2(date.getMonth() + 1)}-${pad2(date.getDate())}`; // ✅ YYYY-MM-DD
+}
+
+function getMonday(date) {
+  const d = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  const day = d.getDay(); // 0=dimanche ... 1=lundi
+  const diffToMonday = (day === 0 ? -6 : 1 - day);
+  d.setDate(d.getDate() + diffToMonday);
+  return d;
+}
+
+function updateWeekUIFromInput() {
+  if (!weekStartInput.value) {
+    weekRangeEl.textContent = "";
+    return;
+  }
+
+  const [y, m, d] = weekStartInput.value.split("-").map(Number);
+  const picked = new Date(y, m - 1, d);
+
+  const monday = getMonday(picked);
+  const sunday = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + 6);
+
+  // Optionnel : on force l'input à afficher le lundi
+  weekStartInput.value = formatISODateLocal(monday);
+
+  weekRangeEl.textContent = `Semaine du ${formatFR(monday)} au ${formatFR(sunday)}`;
+
+  const weekKey = formatISODateLocal(monday);
+  //console.log("weekKey:", weekKey);
+  return weekKey;
+}
+
+weekStartInput.addEventListener("change", updateWeekUIFromInput);
+
+// init au chargement
+(function initWeekStart() {
+  const monday = getMonday(new Date());
+  weekStartInput.value = formatISODateLocal(monday);
+  updateWeekUIFromInput();
+})();
+
+  let planning = {
+  weekKey: "" ,
+  data:{
+    Lundi:  {"Petit-déjeuner": [], "Déjeuner": [], "Diner": []},
+    Mardi:  {"Petit-déjeuner": [], "Déjeuner": [], "Diner": []},
+    Mercredi: {"Petit-déjeuner": [], "Déjeuner": [], "Diner": []},
+    Jeudi:  {"Petit-déjeuner": [], "Déjeuner": [], "Diner": []},
+    Vendredi:  {"Petit-déjeuner": [], "Déjeuner": [], "Diner": []},
+    Samedi:  {"Petit-déjeuner": [], "Déjeuner": [], "Diner": []},
+    Dimanche: {"Petit-déjeuner": [], "Déjeuner": [], "Diner": []},
+  }
+};
   addButtons.forEach((btn) =>{
     btn.addEventListener('click' , () =>{
       const value = window.prompt('quelle plat a ajouter :') ;
@@ -179,7 +242,8 @@
         const delBtn = document.createElement("button") ;
         delBtn.type = "button" ;
         delBtn.textContent = "\u274C";
-        
+        let recup = updateWeekUIFromInput() ;
+        console.log(recup) ;
          //const cell = document.querySelector(`#planning td[data-day="${day}"][data-meal="${meal}"]`) ;
        // cell.querySelector(".meal-text").textContent = value ;
       delBtn.addEventListener('click' , (e) =>{
@@ -189,26 +253,65 @@
       task.appendChild(span) ;
       task.appendChild(delBtn) ;
       ajout.appendChild(task);
+
+      planning.weekKey = recup ;
+      planning.data[day][meal].push(value) ;
+      console.log("planing" , planning) ;
+        localStorage.setItem(`menutime_planning_${planning.weekKey}`, JSON.stringify(planning));
     })
   });
  
-  
+
   ajout.addEventListener('click' , (e) =>{
     e.preventDefault() ;
       const day = selectJour.value ; 
     const meal = selectRepas.value ;
     const plat = inputPlat.value ; 
+    let recup = " ";
 
      function message(plat, day , meal) {
     const cell = document.querySelector(
   `#planning td[data-day="${day}"][data-meal="${meal}"]`
 );
-cell.textContent = plat ;
+cell.querySelector(".meal-text").textContent = plat;
+ recup = updateWeekUIFromInput() ;
+console.log(recup) ;
+
      }
     message(plat,day,meal) ;
+    console.log(day) ;
+    console.log(meal) ;
     
+    planning.weekKey = recup ;
+    planning.data[day][meal].push(plat)  ;
+            console.log("planning :  " , planning) ;
+    localStorage.setItem(`menutime_planning_${planning.weekKey}`, JSON.stringify(planning));
 
   });
+
+  const weekSelect = document.getElementById("weekSelect");
+
+function setWeekSelectToCurrentWeek() {
+  // 1) on récupère la clé semaine courante (lundi)
+  const currentWeekKey = updateWeekUIFromInput(); // ex: "2026-02-10"
+  if (!currentWeekKey) return;
+
+  // 2) si l'option n'existe pas encore, on l'ajoute
+  if (!weekSelect.querySelector(`option[value="${currentWeekKey}"]`)) {
+    const opt = document.createElement("option");
+    opt.value = currentWeekKey;
+    opt.textContent = `Semaine du ${currentWeekKey}`; // tu peux mettre un texte plus joli
+    weekSelect.appendChild(opt);
+  }
+
+  // 3) on force l'affichage sur cette semaine
+  weekSelect.value = currentWeekKey;
+}
+
+// Au chargement, après initWeekStart()
+setWeekSelectToCurrentWeek();
+
+
 </script>
 </body>
 </html>
