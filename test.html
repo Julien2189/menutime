@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planning tâches</title>
+  <link rel="stylesheet" href="style1.css" />
+</head>
+<body>
+
+  <main class="app">
+    <h1>Planning de tâches (Lundi → Dimanche)</h1>
+    <p class="hint">Clique sur + pour ajouter une tâche dans un jour.</p>
+
+    <table class="planner">
+        <thead>
+            <tr>
+                <th></th>
+                <th>matin</th>
+                <th>apres-midi</th>
+                <th>soir</th>
+            </tr>        
+        </thead>
+        <tbody>
+            <tr>
+                <th>lundi</th>
+                <td class="day" data-day="lundi" data-slot="matin"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+                <td class="day" data-day="lundi" data-slot="apres-midi"></td><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+                 <td class="day" data-day="lundi" data-slot="soir"></td><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+            </tr>
+             <tr>
+                <th >mardi</th>
+                <td class="day" data-day="mardi" data-slot="matin"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+               <td class="day" data-day="mardi" data-slot="apres-midi"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+                <td class="day" data-day="mardi" data-slot="soir"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+            </tr>
+             <tr>
+                <th>mercredi</th>
+                <td class="day" data-day="mercredi" data-slot="matin"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+                <td class="day" data-day="mercredi" data-slot="apres-midi"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+                <td class="day" data-day="mercredi" data-slot="soir"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+            </tr>
+             <tr>
+                <th>jeudi</th>
+                <td class="day" data-day="jeudi" data-slot="matin"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+                <td class="day" data-day="jeudi" data-slot="apres-midi"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+               <td class="day" data-day="jeudi" data-slot="soir"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+            </tr>
+             <tr>
+                <th>vendredi</th>
+                <td class="day" data-day="vendredi" data-slot="matin"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+                <td class="day" data-day="vendredi" data-slot="apres-midi"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+                <td class="day" data-day="vendredi" data-slot="soir"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+            </tr>
+             <tr>
+                <th>samedi</th>
+                <td class="day" data-day="samedi" data-slot="matin"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+               <td class="day" data-day="samedi" data-slot="apres-midi"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+                <td class="day" data-day="samedi" data-slot="soir"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+            </tr>
+             <tr>
+                <th>dimanche</th>
+                <td class="day" data-day="dimanche" data-slot="matin"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+                <td class="day" data-day="dimanche" data-slot="apres-midi"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+                <td class="day" data-day="dimanche" data-slot="soir"><div class="tasks"></div>
+            <button class="add" type="button">+</button></td>
+            </tr>
+        </tbody>
+      
+
+    </table>
+
+    <p id="msg" class="msg"></p>
+  </main>
+
+  <script src="script1.js"></script>
+</body>
+</html>

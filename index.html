@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MenuTime</title>
-    
+
   <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
@@ -21,7 +21,7 @@
                         <a href="#">Connectez-vous</a>
                         <a href="#">Contact</a>
                         <a href="#">A propos</a>
-                        <a href="inscription"></a>
+                        <a href="#">Inscription</a>
                         <a href="#">Recettes</a>
                     </li>
                 </ul>
@@ -84,9 +84,10 @@
 <select id="weekSelect">
   <option value="">-- Sélectionner une semaine --</option>
 </select>
+<!-- 
 <button id="loadSelectedWeek" type="button">Charger</button>
-
-<button type="submit">Ajouter</button>
+-->
+<button type="submit" id="btn">Ajouter</button>
 
 
     
@@ -113,18 +114,101 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>Lundi</td><td></td><td></td><td></td></tr>
-        <tr><td>Mardi</td><td></td><td></td><td></td></tr>
-        <tr><td>Mercredi</td><td></td><td></td><td></td></tr>
-        <tr><td>Jeudi</td><td></td><td></td><td></td></tr>
-        <tr><td>Vendredi</td><td></td><td></td><td></td></tr>
-        <tr><td>Samedi</td><td></td><td></td><td></td></tr>
-        <tr><td>Dimanche</td><td></td><td></td><td></td></tr>
+        <tr>
+          <td>Lundi</td>  
+             <td class="meal-cell" data-day="Lundi" data-meal="Petit-déjeuner"><div class="meal-text"></div><button class="add" type="button">+</button></td>
+             <td class="meal-cell" data-day="Lundi" data-meal="Déjeuner"><div class="meal-text"></div><button class="add" type="button">+</button></td>
+             <td class="meal-cell" data-day="Lundi" data-meal="Diner"><div class="meal-text"></div><button class="add" type="button">+</button></td>
+        </tr>
+        <tr><td>Mardi</td>  
+            <td class="meal-cell" data-day="Mardi" data-meal="Petit-déjeuner"><div class="meal-text"></div><button class="add" type="button">+</button></td>
+            <td class="meal-cell" data-day="Mardi" data-meal="Déjeuner"><div class="meal-text"></div><button class="add" type="button">+</button></td>
+            <td class="meal-cell"  data-day="Mardi" data-meal="Diner"><div class="meal-text"></div><button class="add" type="button">+</button></td></tr>
+        <tr><td>Mercredi</td>   
+            <td class="meal-cell" data-day="Mercredi" data-meal="Petit-déjeuner"><div class="meal-text"></div><button class="add" type="button">+</button></td>
+            <td class="meal-cell" data-day="Mercredi" data-meal="Déjeuner"><div class="meal-text"></div><button class="add" type="button">+</button></td>
+            <td class="meal-cell" data-day="Mercredi" data-meal="Diner"><div class="meal-text"></div><button class="add" type="button">+</button></td></tr>
+        <tr><td>Jeudi</td>  
+            <td class="meal-cell" data-day="Jeudi" data-meal="Petit-déjeuner"><div class="meal-text"></div><button class="add" type="button">+</button></td>
+            <td class="meal-cell" data-day="Jeudi" data-meal="Déjeuner"><div class="meal-text"></div><button class="add" type="button">+</button></td>
+            <td class="meal-cell" data-day="Jeudi" data-meal="Diner"><div class="meal-text"></div><button class="add" type="button">+</button></td></tr>
+        <tr><td>Vendredi</td>  
+            <td  class="meal-cell" data-day="Vendredi" data-meal="Petit-déjeuner"><div class="meal-text"></div><button class="add" type="button">+</button></td>
+            <td class="meal-cell" data-day="Vendredi" data-meal="Déjeuner"><div class="meal-text"></div><button class="add" type="button">+</button></td>
+            <td class="meal-cell" data-day="Vendredi" data-meal="Diner"><div class="meal-text"></div><button class="add" type="button">+</button></td></tr>
+        <tr><td>Samedi</td>  
+            <td class="meal-cell" data-day="Samedi" data-meal="Petit-déjeuner"><div class="meal-text"></div><button class="add" type="button">+</button></td>
+            <td class="meal-cell" data-day="Samedi" data-meal="Déjeuner"><div class="meal-text"></div><button class="add" type="button">+</button></td>
+            <td class="meal-cell" data-day="Samedi" data-meal="Diner"><div class="meal-text"></div><button class="add" type="button">+</button></td></tr>
+        <tr><td>Dimanche</td>  
+            <td class="meal-cell" data-day="Dimanche" data-meal="Petit-déjeuner"><div class="meal-text"></div><button class="add" type="button">+</button></td>
+            <td class="meal-cell" data-day="Dimanche" data-meal="Déjeuner"><div class="meal-text"></div><button class="add" type="button">+</button></td>
+            <td class="meal-cell" data-day="Dimanche" data-meal="Diner"><div class="meal-text"></div><button class="add" type="button">+</button></td>
+          </tr>
       </tbody>
     </table>
   </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js" referrerpolicy="no-referrer"></script>
+<script>
+  const addButtons = document.querySelectorAll('.add') ;
+  const inputPlat = document.getElementById('plat');
+  const ajout = document.getElementById('btn') ;
+  const selectRepas = document.getElementById('repas') ;
+  const selectJour =  document.getElementById('jour') ;
+ 
+
+  addButtons.forEach((btn) =>{
+    btn.addEventListener('click' , () =>{
+      const value = window.prompt('quelle plat a ajouter :') ;
+      const test = btn.closest('td') ; 
+     const day = test.dataset.day ;
+     const meal = test.dataset.meal ; 
+      console.log( " " + day + " " + meal) ;
+      if(!value || value.trim() === "") {
+        alert('erreur de saisie') ;
+        return ; 
+      }
+     
+        const ajout = test.querySelector('.meal-text') ;
+        const task = document.createElement("div") ;
+        task.className = "task" ;
+        const span = document.createElement("span") ;
+        span.textContent = value.trim() ;
+        const delBtn = document.createElement("button") ;
+        delBtn.type = "button" ;
+        delBtn.textContent = "\u274C";
+        
+         //const cell = document.querySelector(`#planning td[data-day="${day}"][data-meal="${meal}"]`) ;
+       // cell.querySelector(".meal-text").textContent = value ;
+      delBtn.addEventListener('click' , (e) =>{
+        e.stopPropagation() ; 
+        task.remove() ;
+      });
+      task.appendChild(span) ;
+      task.appendChild(delBtn) ;
+      ajout.appendChild(task);
+    })
+  });
+ 
+  
+  ajout.addEventListener('click' , (e) =>{
+    e.preventDefault() ;
+      const day = selectJour.value ; 
+    const meal = selectRepas.value ;
+    const plat = inputPlat.value ; 
+
+     function message(plat, day , meal) {
+    const cell = document.querySelector(
+  `#planning td[data-day="${day}"][data-meal="${meal}"]`
+);
+cell.textContent = plat ;
+     }
+    message(plat,day,meal) ;
+    
+
+  });
+</script>
 </body>
 </html>
